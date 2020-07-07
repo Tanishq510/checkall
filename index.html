@@ -1,28 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Page Title</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </head>
 <body>
-<input type="number" id="number_of_checkboxes"><br>
-<button type="button" onclick="my_function()">Get Checkboxes</button>
-
-<div id='checkboxes'>
-
-</div>
+<p> Master Checkbox</p>
+<input type="checkbox" id="primary"> <br>
+<input type="checkbox" class="secondary" value="1">
+<input type="checkbox" class="secondary" value="2">
+<input type="checkbox" class="secondary" value="3">
+<input type="checkbox" class="secondary" value="4">
+<input type="checkbox" class="secondary" value="5">
+<input type="checkbox" class="secondary" value="6">
 <script>
-function my_function(){
-let count = document.getElementById("number_of_checkboxes");
-console.log(count);
-//get_checkboxe(count);
+$(".secondary").on('change',function(){
+		array = [];
+		var checked = $('.secondary:checked');
+        checked.each(function(){
+         array.push($(this).val());
+        })
+       if(checked.length ==  $('.secondary').length){
+       	$("#primary").prop('checked',true);
+       }
+       else{
+       	$("#primary").prop('checked',false);
+       }
+        console.log(array);
+        
+})
 
-}
-function get_checkboxe(number){
-let count = number;
-console.log(count);
-	
-   // div = document.getElementById('checkboxes').innerHTML(html); 
-}
+	$("#primary").on('change',function(){
+    var arr = [];
+    		$(".secondary").prop('checked',true);
+            $(".secondary").each(function(){
+                arr.push($(this).val());
+            })
+       if($("#primary").prop('checked') == false){
+       		$(".secondary").prop('checked',false);
+            arr = [];
+       }
+       console.log(arr);
+    })
 </script>
 </body>
 </html>
